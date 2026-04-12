@@ -1,0 +1,251 @@
+ParticipantID,Session,TrialNum,TargetType,Target,PrimeType,Prime,Congruency
+1,1,1,Olfactory,Tobacco,Auditory,Pink noise,Control
+1,1,2,Olfactory,Black pepper,Auditory,Vanilla.wav,Incongruent
+1,1,3,Olfactory,Lemon blossom,Auditory,Lemon blossom.wav,Congruent
+1,1,4,Olfactory,Melon,Auditory,Melon.wav,Congruent
+1,1,5,Olfactory,Vanilla,Auditory,Bergamot.wav,Incongruent
+1,1,6,Auditory,Lemon blossom.wav,Olfactory,Lemon blossom,Congruent
+1,1,7,Auditory,Bergamot.wav,Olfactory,Melon,Incongruent
+1,1,8,Auditory,Truffle.wav,Olfactory,Distilled water,Control
+1,1,9,Auditory,Melon.wav,Olfactory,Melon,Congruent
+1,1,10,Auditory,Vanilla.wav,Olfactory,Black pepper,Incongruent
+2,1,1,Auditory,Vanilla.wav,Olfactory,Vanilla,Congruent
+2,1,2,Auditory,Melon.wav,Olfactory,Tobacco,Incongruent
+2,1,3,Auditory,Lemon blossom.wav,Olfactory,Tobacco,Incongruent
+2,1,4,Auditory,Bergamot.wav,Olfactory,Distilled water,Control
+2,1,5,Auditory,Truffle.wav,Olfactory,Tobacco,Congruent
+2,1,6,Olfactory,Tobacco,Auditory,Truffle.wav,Congruent
+2,1,7,Olfactory,Vanilla,Auditory,Vanilla.wav,Congruent
+2,1,8,Olfactory,Lemon blossom,Auditory,Truffle.wav,Incongruent
+2,1,9,Olfactory,Black pepper,Auditory,Pink noise,Control
+2,1,10,Olfactory,Melon,Auditory,Truffle.wav,Incongruent
+3,1,1,Auditory,Melon.wav,Lexical,Λιακάδα,Congruent
+3,1,2,Auditory,Bergamot.wav,Lexical,Θαλπωρή,Incongruent
+3,1,3,Auditory,Vanilla.wav,Lexical,Νέκταρ,Congruent
+3,1,4,Auditory,Truffle.wav,Olfactory,Lemon blossom,Incongruent
+3,1,5,Auditory,Lemon blossom.wav,Olfactory,Distilled water,Control
+3,1,6,Olfactory,Lemon blossom,Auditory,Pink noise,Control
+3,1,7,Olfactory,Black pepper,Lexical,Νέκταρ,Incongruent
+3,1,8,Olfactory,Tobacco,Auditory,Lemon blossom.wav,Incongruent
+3,1,9,Olfactory,Melon,Lexical,Λιακάδα,Congruent
+3,1,10,Olfactory,Vanilla,Lexical,Νέκταρ,Congruent
+4,1,1,Olfactory,Vanilla,Lexical,Αιχμή,Incongruent
+4,1,2,Olfactory,Lemon blossom,Lexical,Αύρα,Congruent
+4,1,3,Olfactory,Tobacco,Lexical,Αύρα,Incongruent
+4,1,4,Olfactory,Melon,Auditory,Pink noise,Control
+4,1,5,Olfactory,Black pepper,Auditory,Bergamot.wav,Congruent
+4,1,6,Auditory,Truffle.wav,Lexical,Αιχμή,Incongruent
+4,1,7,Auditory,Bergamot.wav,Olfactory,Black pepper,Congruent
+4,1,8,Auditory,Melon.wav,Olfactory,Distilled water,Control
+4,1,9,Auditory,Vanilla.wav,Lexical,Αιχμή,Incongruent
+4,1,10,Auditory,Lemon blossom.wav,Lexical,Αύρα,Congruent
+5,1,1,Auditory,Melon.wav,Lexical,Μάζα,Incongruent
+5,1,2,Auditory,Bergamot.wav,Lexical,Αιχμή,Congruent
+5,1,3,Auditory,Vanilla.wav,Olfactory,Distilled water,Control
+5,1,4,Auditory,Lemon blossom.wav,Lexical,Μάζα,Incongruent
+5,1,5,Auditory,Truffle.wav,Lexical,Μάζα,Congruent
+5,1,6,Olfactory,Melon,Lexical,Μάζα,Incongruent
+5,1,7,Olfactory,Tobacco,Lexical,Μάζα,Congruent
+5,1,8,Olfactory,Lemon blossom,Lexical,Θαλπωρή,Incongruent
+5,1,9,Olfactory,Black pepper,Lexical,Αιχμή,Congruent
+5,1,10,Olfactory,Vanilla,Auditory,Pink noise,Control
+5,2,1,Auditory,Bergamot.wav,Olfactory,Melon,Incongruent
+5,2,2,Auditory,Lemon blossom.wav,Olfactory,Lemon blossom,Congruent
+5,2,3,Auditory,Vanilla.wav,Olfactory,Black pepper,Incongruent
+5,2,4,Auditory,Melon.wav,Olfactory,Melon,Congruent
+5,2,5,Auditory,Truffle.wav,Olfactory,Distilled water,Control
+5,2,6,Olfactory,Tobacco,Auditory,Pink noise,Control
+5,2,7,Olfactory,Melon,Auditory,Melon.wav,Congruent
+5,2,8,Olfactory,Black pepper,Auditory,Vanilla.wav,Incongruent
+5,2,9,Olfactory,Vanilla,Auditory,Bergamot.wav,Incongruent
+5,2,10,Olfactory,Lemon blossom,Auditory,Lemon blossom.wav,Congruent
+5,3,1,Auditory,Bergamot.wav,Olfactory,Distilled water,Control
+5,3,2,Auditory,Lemon blossom.wav,Olfactory,Tobacco,Incongruent
+5,3,3,Auditory,Vanilla.wav,Olfactory,Vanilla,Congruent
+5,3,4,Auditory,Melon.wav,Olfactory,Tobacco,Incongruent
+5,3,5,Auditory,Truffle.wav,Olfactory,Tobacco,Congruent
+5,3,6,Olfactory,Melon,Auditory,Truffle.wav,Incongruent
+5,3,7,Olfactory,Vanilla,Auditory,Vanilla.wav,Congruent
+5,3,8,Olfactory,Black pepper,Auditory,Pink noise,Control
+5,3,9,Olfactory,Lemon blossom,Auditory,Truffle.wav,Incongruent
+5,3,10,Olfactory,Tobacco,Auditory,Truffle.wav,Congruent
+6,1,1,Olfactory,Melon,Lexical,Λιακάδα,Congruent
+6,1,2,Olfactory,Lemon blossom,Auditory,Pink noise,Control
+6,1,3,Olfactory,Black pepper,Lexical,Νέκταρ,Incongruent
+6,1,4,Olfactory,Tobacco,Auditory,Lemon blossom.wav,Incongruent
+6,1,5,Olfactory,Vanilla,Lexical,Νέκταρ,Congruent
+6,1,6,Auditory,Bergamot.wav,Lexical,Θαλπωρή,Incongruent
+6,1,7,Auditory,Vanilla.wav,Lexical,Νέκταρ,Congruent
+6,1,8,Auditory,Lemon blossom.wav,Olfactory,Distilled water,Control
+6,1,9,Auditory,Truffle.wav,Olfactory,Lemon blossom,Incongruent
+6,1,10,Auditory,Melon.wav,Lexical,Λιακάδα,Congruent
+6,2,1,Olfactory,Melon,Auditory,Pink noise,Control
+6,2,2,Olfactory,Lemon blossom,Lexical,Αύρα,Congruent
+6,2,3,Olfactory,Tobacco,Lexical,Αύρα,Incongruent
+6,2,4,Olfactory,Vanilla,Lexical,Αιχμή,Incongruent
+6,2,5,Olfactory,Black pepper,Auditory,Bergamot.wav,Congruent
+6,2,6,Auditory,Truffle.wav,Lexical,Αιχμή,Incongruent
+6,2,7,Auditory,Lemon blossom.wav,Lexical,Αύρα,Congruent
+6,2,8,Auditory,Bergamot.wav,Olfactory,Black pepper,Congruent
+6,2,9,Auditory,Vanilla.wav,Lexical,Αιχμή,Incongruent
+6,2,10,Auditory,Melon.wav,Olfactory,Distilled water,Control
+6,3,1,Olfactory,Lemon blossom,Lexical,Θαλπωρή,Incongruent
+6,3,2,Olfactory,Black pepper,Lexical,Αιχμή,Congruent
+6,3,3,Olfactory,Tobacco,Lexical,Μάζα,Congruent
+6,3,4,Olfactory,Vanilla,Auditory,Pink noise,Control
+6,3,5,Olfactory,Melon,Lexical,Μάζα,Incongruent
+6,3,6,Auditory,Bergamot.wav,Lexical,Αιχμή,Congruent
+6,3,7,Auditory,Melon.wav,Lexical,Μάζα,Incongruent
+6,3,8,Auditory,Truffle.wav,Lexical,Μάζα,Congruent
+6,3,9,Auditory,Lemon blossom.wav,Lexical,Μάζα,Incongruent
+6,3,10,Auditory,Vanilla.wav,Olfactory,Distilled water,Control
+7,1,1,Auditory,Vanilla.wav,Olfactory,Black pepper,Incongruent
+7,1,2,Auditory,Melon.wav,Olfactory,Melon,Congruent
+7,1,3,Auditory,Truffle.wav,Olfactory,Distilled water,Control
+7,1,4,Auditory,Bergamot.wav,Olfactory,Melon,Incongruent
+7,1,5,Auditory,Lemon blossom.wav,Olfactory,Lemon blossom,Congruent
+7,1,6,Olfactory,Black pepper,Auditory,Vanilla.wav,Incongruent
+7,1,7,Olfactory,Lemon blossom,Auditory,Lemon blossom.wav,Congruent
+7,1,8,Olfactory,Tobacco,Auditory,Pink noise,Control
+7,1,9,Olfactory,Melon,Auditory,Melon.wav,Congruent
+7,1,10,Olfactory,Vanilla,Auditory,Bergamot.wav,Incongruent
+7,2,1,Auditory,Truffle.wav,Lexical,Αιχμή,Incongruent
+7,2,2,Auditory,Melon.wav,Olfactory,Distilled water,Control
+7,2,3,Auditory,Bergamot.wav,Olfactory,Black pepper,Congruent
+7,2,4,Auditory,Lemon blossom.wav,Lexical,Αύρα,Congruent
+7,2,5,Auditory,Vanilla.wav,Lexical,Αιχμή,Incongruent
+7,2,6,Olfactory,Melon,Auditory,Pink noise,Control
+7,2,7,Olfactory,Vanilla,Lexical,Αιχμή,Incongruent
+7,2,8,Olfactory,Tobacco,Lexical,Αύρα,Incongruent
+7,2,9,Olfactory,Black pepper,Auditory,Bergamot.wav,Congruent
+7,2,10,Olfactory,Lemon blossom,Lexical,Αύρα,Congruent
+7,3,1,Auditory,Melon.wav,Lexical,Λιακάδα,Congruent
+7,3,2,Auditory,Bergamot.wav,Lexical,Θαλπωρή,Incongruent
+7,3,3,Auditory,Vanilla.wav,Lexical,Νέκταρ,Congruent
+7,3,4,Auditory,Truffle.wav,Olfactory,Lemon blossom,Incongruent
+7,3,5,Auditory,Lemon blossom.wav,Olfactory,Distilled water,Control
+7,3,6,Olfactory,Vanilla,Lexical,Νέκταρ,Congruent
+7,3,7,Olfactory,Lemon blossom,Auditory,Pink noise,Control
+7,3,8,Olfactory,Black pepper,Lexical,Νέκταρ,Incongruent
+7,3,9,Olfactory,Melon,Lexical,Λιακάδα,Congruent
+7,3,10,Olfactory,Tobacco,Auditory,Lemon blossom.wav,Incongruent
+8,1,1,Auditory,Truffle.wav,Lexical,Μάζα,Congruent
+8,1,2,Auditory,Lemon blossom.wav,Lexical,Μάζα,Incongruent
+8,1,3,Auditory,Vanilla.wav,Olfactory,Distilled water,Control
+8,1,4,Auditory,Bergamot.wav,Lexical,Αιχμή,Congruent
+8,1,5,Auditory,Melon.wav,Lexical,Μάζα,Incongruent
+8,1,6,Olfactory,Black pepper,Lexical,Αιχμή,Congruent
+8,1,7,Olfactory,Tobacco,Lexical,Μάζα,Congruent
+8,1,8,Olfactory,Melon,Lexical,Μάζα,Incongruent
+8,1,9,Olfactory,Vanilla,Auditory,Pink noise,Control
+8,1,10,Olfactory,Lemon blossom,Lexical,Θαλπωρή,Incongruent
+8,2,1,Olfactory,Tobacco,Auditory,Truffle.wav,Congruent
+8,2,2,Olfactory,Melon,Auditory,Truffle.wav,Incongruent
+8,2,3,Olfactory,Black pepper,Auditory,Pink noise,Control
+8,2,4,Olfactory,Vanilla,Auditory,Vanilla.wav,Congruent
+8,2,5,Olfactory,Lemon blossom,Auditory,Truffle.wav,Incongruent
+8,2,6,Auditory,Truffle.wav,Olfactory,Tobacco,Congruent
+8,2,7,Auditory,Bergamot.wav,Olfactory,Distilled water,Control
+8,2,8,Auditory,Melon.wav,Olfactory,Tobacco,Incongruent
+8,2,9,Auditory,Vanilla.wav,Olfactory,Vanilla,Congruent
+8,2,10,Auditory,Lemon blossom.wav,Olfactory,Tobacco,Incongruent
+8,3,1,Auditory,Melon.wav,Olfactory,Melon,Congruent
+8,3,2,Auditory,Truffle.wav,Olfactory,Distilled water,Control
+8,3,3,Auditory,Vanilla.wav,Olfactory,Black pepper,Incongruent
+8,3,4,Auditory,Bergamot.wav,Olfactory,Melon,Incongruent
+8,3,5,Auditory,Lemon blossom.wav,Olfactory,Lemon blossom,Congruent
+8,3,6,Olfactory,Tobacco,Auditory,Pink noise,Control
+8,3,7,Olfactory,Vanilla,Auditory,Bergamot.wav,Incongruent
+8,3,8,Olfactory,Lemon blossom,Auditory,Lemon blossom.wav,Congruent
+8,3,9,Olfactory,Melon,Auditory,Melon.wav,Congruent
+8,3,10,Olfactory,Black pepper,Auditory,Vanilla.wav,Incongruent
+10,1,1,Auditory,Melon.wav,Olfactory,Tobacco,Incongruent
+10,1,2,Auditory,Lemon blossom.wav,Olfactory,Tobacco,Incongruent
+10,1,3,Auditory,Vanilla.wav,Olfactory,Vanilla,Congruent
+10,1,4,Auditory,Bergamot.wav,Olfactory,Distilled water,Control
+10,1,5,Auditory,Truffle.wav,Olfactory,Tobacco,Congruent
+10,1,6,Olfactory,Lemon blossom,Auditory,Truffle.wav,Incongruent
+10,1,7,Olfactory,Black pepper,Auditory,Pink noise,Control
+10,1,8,Olfactory,Tobacco,Auditory,Truffle.wav,Congruent
+10,1,9,Olfactory,Vanilla,Auditory,Vanilla.wav,Congruent
+10,1,10,Olfactory,Melon,Auditory,Truffle.wav,Incongruent
+10,2,1,Auditory,Lemon blossom.wav,Olfactory,Distilled water,Control
+10,2,2,Auditory,Vanilla.wav,Lexical,Νέκταρ,Congruent
+10,2,3,Auditory,Melon.wav,Lexical,Λιακάδα,Congruent
+10,2,4,Auditory,Bergamot.wav,Lexical,Θαλπωρή,Incongruent
+10,2,5,Auditory,Truffle.wav,Olfactory,Lemon blossom,Incongruent
+10,2,6,Olfactory,Black pepper,Lexical,Νέκταρ,Incongruent
+10,2,7,Olfactory,Vanilla,Lexical,Νέκταρ,Congruent
+10,2,8,Olfactory,Melon,Lexical,Λιακάδα,Congruent
+10,2,9,Olfactory,Lemon blossom,Auditory,Pink noise,Control
+10,2,10,Olfactory,Tobacco,Auditory,Lemon blossom.wav,Incongruent
+10,3,1,Auditory,Bergamot.wav,Olfactory,Black pepper,Congruent
+10,3,2,Auditory,Lemon blossom.wav,Lexical,Αύρα,Congruent
+10,3,3,Auditory,Melon.wav,Olfactory,Distilled water,Control
+10,3,4,Auditory,Vanilla.wav,Lexical,Αιχμή,Incongruent
+10,3,5,Auditory,Truffle.wav,Lexical,Αιχμή,Incongruent
+10,3,6,Olfactory,Vanilla,Lexical,Αιχμή,Incongruent
+10,3,7,Olfactory,Lemon blossom,Lexical,Αύρα,Congruent
+10,3,8,Olfactory,Black pepper,Auditory,Bergamot.wav,Congruent
+10,3,9,Olfactory,Melon,Auditory,Pink noise,Control
+10,3,10,Olfactory,Tobacco,Lexical,Αύρα,Incongruent
+11,1,1,Olfactory,Black pepper,Lexical,Αιχμή,Congruent
+11,1,2,Olfactory,Lemon blossom,Lexical,Θαλπωρή,Incongruent
+11,1,3,Olfactory,Melon,Lexical,Μάζα,Incongruent
+11,1,4,Olfactory,Vanilla,Auditory,Pink noise,Control
+11,1,5,Olfactory,Tobacco,Lexical,Μάζα,Congruent
+11,1,6,Auditory,Melon.wav,Lexical,Μάζα,Incongruent
+11,1,7,Auditory,Bergamot.wav,Lexical,Αιχμή,Congruent
+11,1,8,Auditory,Truffle.wav,Lexical,Μάζα,Congruent
+11,1,9,Auditory,Vanilla.wav,Olfactory,Distilled water,Control
+11,1,10,Auditory,Lemon blossom.wav,Lexical,Μάζα,Incongruent
+11,2,1,Olfactory,Melon,Auditory,Truffle.wav,Incongruent
+11,2,2,Olfactory,Lemon blossom,Auditory,Truffle.wav,Incongruent
+11,2,3,Olfactory,Black pepper,Auditory,Pink noise,Control
+11,2,4,Olfactory,Vanilla,Auditory,Vanilla.wav,Congruent
+11,2,5,Olfactory,Tobacco,Auditory,Truffle.wav,Congruent
+11,2,6,Auditory,Vanilla.wav,Olfactory,Vanilla,Congruent
+11,2,7,Auditory,Truffle.wav,Olfactory,Tobacco,Congruent
+11,2,8,Auditory,Melon.wav,Olfactory,Tobacco,Incongruent
+11,2,9,Auditory,Bergamot.wav,Olfactory,Distilled water,Control
+11,2,10,Auditory,Lemon blossom.wav,Olfactory,Tobacco,Incongruent
+11,3,1,Olfactory,Black pepper,Lexical,Νέκταρ,Incongruent
+11,3,2,Olfactory,Vanilla,Lexical,Νέκταρ,Congruent
+11,3,3,Olfactory,Tobacco,Auditory,Lemon blossom.wav,Incongruent
+11,3,4,Olfactory,Lemon blossom,Auditory,Pink noise,Control
+11,3,5,Olfactory,Melon,Lexical,Λιακάδα,Congruent
+11,3,6,Auditory,Vanilla.wav,Lexical,Νέκταρ,Congruent
+11,3,7,Auditory,Lemon blossom.wav,Olfactory,Distilled water,Control
+11,3,8,Auditory,Truffle.wav,Olfactory,Lemon blossom,Incongruent
+11,3,9,Auditory,Melon.wav,Lexical,Λιακάδα,Congruent
+11,3,10,Auditory,Bergamot.wav,Lexical,Θαλπωρή,Incongruent
+12,1,1,Olfactory,Tobacco,Lexical,Αύρα,Incongruent
+12,1,2,Olfactory,Melon,Auditory,Pink noise,Control
+12,1,3,Olfactory,Lemon blossom,Lexical,Αύρα,Congruent
+12,1,4,Olfactory,Vanilla,Lexical,Αιχμή,Incongruent
+12,1,5,Olfactory,Black pepper,Auditory,Bergamot.wav,Congruent
+12,1,6,Auditory,Lemon blossom.wav,Lexical,Αύρα,Congruent
+12,1,7,Auditory,Vanilla.wav,Lexical,Αιχμή,Incongruent
+12,1,8,Auditory,Bergamot.wav,Olfactory,Black pepper,Congruent
+12,1,9,Auditory,Truffle.wav,Lexical,Αιχμή,Incongruent
+12,1,10,Auditory,Melon.wav,Olfactory,Distilled water,Control
+12,2,1,Auditory,Lemon blossom.wav,Olfactory,Lemon blossom,Congruent
+12,2,2,Auditory,Bergamot.wav,Olfactory,Melon,Incongruent
+12,2,3,Auditory,Melon.wav,Olfactory,Melon,Congruent
+12,2,4,Auditory,Truffle.wav,Olfactory,Distilled water,Control
+12,2,5,Auditory,Vanilla.wav,Olfactory,Black pepper,Incongruent
+12,2,6,Olfactory,Tobacco,Auditory,Pink noise,Control
+12,2,7,Olfactory,Lemon blossom,Auditory,Lemon blossom.wav,Congruent
+12,2,8,Olfactory,Black pepper,Auditory,Vanilla.wav,Incongruent
+12,2,9,Olfactory,Melon,Auditory,Melon.wav,Congruent
+12,2,10,Olfactory,Vanilla,Auditory,Bergamot.wav,Incongruent
+12,3,1,Olfactory,Black pepper,Lexical,Αιχμή,Congruent
+12,3,2,Olfactory,Lemon blossom,Lexical,Θαλπωρή,Incongruent
+12,3,3,Olfactory,Tobacco,Lexical,Μάζα,Congruent
+12,3,4,Olfactory,Melon,Lexical,Μάζα,Incongruent
+12,3,5,Olfactory,Vanilla,Auditory,Pink noise,Control
+12,3,6,Auditory,Vanilla.wav,Olfactory,Distilled water,Control
+12,3,7,Auditory,Truffle.wav,Lexical,Μάζα,Congruent
+12,3,8,Auditory,Bergamot.wav,Lexical,Αιχμή,Congruent
+12,3,9,Auditory,Lemon blossom.wav,Lexical,Μάζα,Incongruent
+12,3,10,Auditory,Melon.wav,Lexical,Μάζα,Incongruent

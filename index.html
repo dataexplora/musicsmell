@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MusicSmell</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Waiting Screen (default) -->
+  <div id="screen-waiting" class="screen active">
+    <h1 class="waiting-title">Αναμονή...</h1>
+    <button id="btn-setup" class="btn-setup">Ρύθμιση</button>
+  </div>
+
+  <!-- Experiment Screen -->
+  <div id="screen-experiment" class="screen">
+    <div id="experiment-content"></div>
+  </div>
+
+  <!-- End Screen -->
+  <div id="screen-end" class="screen">
+    <h1>Ευχαριστούμε για τη συμμετοχή σας!</h1>
+  </div>
+
+  <script src="js/csv-parser.js"></script>
+  <script src="js/audio-manager.js"></script>
+  <script src="js/trial-engine.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

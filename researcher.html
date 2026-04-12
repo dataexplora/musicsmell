@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MusicSmell — Ερευνητής</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0a0a1a;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* --- Header --- */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #1a1a2e;
+    }
+
+    .header h1 {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #888;
+    }
+
+    #progress-text { font-size: 0.9rem; color: #888; }
+
+    .progress-bar {
+      width: 100%;
+      height: 3px;
+      background: #1a1a2e;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #1565c0;
+      border-radius: 2px;
+      transition: width 0.3s;
+      width: 0%;
+    }
+
+    /* --- Main Content --- */
+    .main { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+
+    /* --- Setup Section --- */
+    .setup-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .setup-section h2 {
+      font-size: 1.5rem;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .setup-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .setup-status {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .setup-status.ready { color: #4caf50; }
+    .setup-status.error { color: #f44336; }
+
+    /* Buttons */
+    .btn {
+      padding: 0.7rem 1.4rem;
+      font-size: 0.95rem;
+      border: 1px solid #444;
+      background: #2a2a3e;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: inherit;
+    }
+
+    .btn:hover { background: #3a3a5e; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-primary {
+      background: #1565c0;
+      border-color: #1565c0;
+      font-size: 1.1rem;
+      padding: 0.9rem 2rem;
+    }
+
+    .btn-primary:hover:not(:disabled) { background: #1976d2; }
+
+    .btn-warning {
+      background: #e65100;
+      border-color: #e65100;
+    }
+
+    .btn-warning:hover { background: #f57c00; }
+
+    /* Drop zone */
+    .drop-zone {
+      width: 100%;
+      height: 80px;
+      border: 2px dashed #444;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.95rem;
+      color: #888;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .drop-zone:hover { border-color: #666; }
+    .drop-zone.dragover { border-color: #1565c0; background: rgba(21, 101, 192, 0.1); }
+    .drop-zone.loaded { border-color: #4caf50; border-style: solid; color: #4caf50; }
+
+    /* Center start button */
+    .start-row { text-align: center; margin-top: 0.5rem; }
+
+    /* --- Experiment Monitor Section --- */
+    .monitor-section { display: none; }
+    .monitor-section.active { display: block; }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .card {
+      background: #1a1a2e;
+      border-radius: 10px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .card h3 {
+      font-size: 0.75rem;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    .card .value { font-size: 1.6rem; font-weight: 300; }
+    .card .detail { font-size: 0.9rem; color: #aaa; white-space: pre-line; line-height: 1.4; }
+
+    #card-action { border: 2px solid transparent; transition: border-color 0.3s, background 0.3s; }
+    #card-action.alert { border-color: #ff9800; background: #2a1a05; }
+    #card-action.alert .value { color: #ffb74d; }
+
+    .phase-badge {
+      display: inline-block;
+      padding: 0.25rem 0.8rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .phase-PREPARING { background: #333; color: #aaa; }
+    .phase-PRIME { background: #1565c0; }
+    .phase-ISI { background: #333; color: #aaa; }
+    .phase-TARGET { background: #6a1b9a; }
+    .phase-RESPONSE { background: #2e7d32; }
+    .phase-PAUSE { background: #333; color: #aaa; }
+
+    /* --- Complete Section --- */
+    .complete-section {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .complete-section.active { display: block; }
+
+    .complete-section h2 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: #4caf50;
+      margin-bottom: 1rem;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>MusicSmell — Οθόνη Ερευνητή</h1>
+    <span id="progress-text"></span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+  <div class="main">
+    <!-- SETUP -->
+    <div class="setup-section" id="section-setup">
+      <h2>Ρύθμιση Πειράματος</h2>
+
+      <div class="setup-row">
+        <label class="btn" id="label-audio">
+          Επιλέξτε φάκελο ήχων
+          <input type="file" id="input-audio" webkitdirectory multiple accept="audio/*" hidden>
+        </label>
+        <span class="setup-status" id="status-audio"></span>
+      </div>
+
+      <div id="csv-drop-zone" class="drop-zone">
+        Σύρετε το CSV αρχείο εδώ ή κάντε κλικ
+      </div>
+      <span class="setup-status" id="status-csv"></span>
+
+      <div class="start-row">
+        <button class="btn btn-primary" id="btn-start" disabled>Έναρξη Πειράματος</button>
+      </div>
+    </div>
+
+    <!-- EXPERIMENT MONITOR -->
+    <div class="monitor-section" id="section-monitor">
+      <div class="info-grid">
+        <div class="card">
+          <h3>Τρέχον Trial</h3>
+          <div class="value" id="val-trial">—</div>
+          <div class="detail" id="detail-trial">—</div>
+        </div>
+
+        <div class="card" id="card-action">
+          <h3>Ενέργεια</h3>
+          <div class="value" id="val-action">—</div>
+          <div class="detail" id="detail-action">—</div>
+        </div>
+
+        <div class="card">
+          <h3>Φάση</h3>
+          <div class="value" id="val-phase">—</div>
+          <div class="detail" id="detail-phase">—</div>
+        </div>
+
+        <div class="card">
+          <h3>Επόμενο Trial</h3>
+          <div class="value" id="val-next">—</div>
+          <div class="detail" id="detail-next">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPLETE -->
+    <div class="complete-section" id="section-complete">
+      <h2>Το πείραμα ολοκληρώθηκε!</h2>
+      <p style="color: #aaa; margin-bottom: 2rem;">Το CSV αποτελεσμάτων κατέβηκε αυτόματα.</p>
+      <button class="btn btn-primary" id="btn-new-session">Νέο Session</button>
+    </div>
+  </div>
+
+  <script>
+    /** @type {Window} Reference to the participant (opener) window */
+    const participantWindow = window.opener;
+
+    let audioReady = false;
+    let csvReady = false;
+
+    // --- Setup Controls ---
+
+    // Audio folder picker
+    document.getElementById('input-audio').addEventListener('change', (e) => {
+      const files = Array.from(e.target.files);
+      if (files.length === 0) return;
+
+      document.getElementById('status-audio').textContent = 'Φόρτωση...';
+
+      // Send files to participant window for loading
+      participantWindow.postMessage({ type: 'load-audio', files }, '*');
+    });
+
+    // CSV drag & drop
+    const dropZone = document.getElementById('csv-drop-zone');
+
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (file) readAndSendCSV(file);
+    });
+
+    dropZone.addEventListener('click', () => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.csv';
+      input.addEventListener('change', (e) => {
+        if (e.target.files[0]) readAndSendCSV(e.target.files[0]);
+      });
+      input.click();
+    });
+
+    function readAndSendCSV(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        participantWindow.postMessage({ type: 'load-csv', csvText: e.target.result }, '*');
+        dropZone.classList.add('loaded');
+        dropZone.textContent = file.name;
+      };
+      reader.readAsText(file);
+    }
+
+    // Start button
+    document.getElementById('btn-start').addEventListener('click', () => {
+      participantWindow.postMessage({ type: 'start' }, '*');
+      document.getElementById('section-setup').classList.add('hidden');
+      document.getElementById('section-monitor').classList.add('active');
+    });
+
+    // New session button
+    document.getElementById('btn-new-session').addEventListener('click', () => {
+      participantWindow.postMessage({ type: 'new-session' }, '*');
+    });
+
+    // --- Check readiness ---
+
+    function checkReady() {
+      document.getElementById('btn-start').disabled = !(audioReady && csvReady);
+    }
+
+    // --- Messages from Participant ---
+
+    const PHASE_LABELS = {
+      PREPARING: 'Προετοιμασία',
+      PRIME: 'Prime',
+      ISI: 'Παύση (ISI)',
+      TARGET: 'Target',
+      RESPONSE: 'Απόκριση',
+      PAUSE: 'Παύση'
+    };
+
+    window.addEventListener('message', (event) => {
+      const data = event.data;
+      if (!data || !data.type) return;
+
+      switch (data.type) {
+        case 'audio-ready':
+          audioReady = true;
+          document.getElementById('status-audio').textContent = `${data.fileNames.length} αρχεία ήχου`;
+          document.getElementById('status-audio').classList.add('ready');
+          checkReady();
+          break;
+
+        case 'audio-error':
+          document.getElementById('status-audio').textContent = data.message;
+          document.getElementById('status-audio').classList.add('error');
+          break;
+
+        case 'csv-ready':
+          csvReady = true;
+          document.getElementById('status-csv').textContent =
+            `${data.trialCount} trials — P${data.participantId} S${data.session}`;
+          document.getElementById('status-csv').classList.add('ready');
+          checkReady();
+          break;
+
+        case 'csv-error':
+          document.getElementById('status-csv').textContent = data.message;
+          document.getElementById('status-csv').classList.add('error');
+          break;
+
+        case 'trial-update':
+          handleTrialUpdate(data);
+          break;
+
+        case 'complete':
+          handleComplete();
+          break;
+
+        case 'session-reset':
+          handleSessionReset();
+          break;
+      }
+    });
+
+    function handleTrialUpdate({ trial, nextTrial, trialIndex, totalTrials, phase }) {
+      // Progress
+      const progress = ((trialIndex + 1) / totalTrials) * 100;
+      document.getElementById('progress-fill').style.width = progress + '%';
+      document.getElementById('progress-text').textContent = `Trial ${trialIndex + 1} / ${totalTrials}`;
+
+      // Current trial
+      document.getElementById('val-trial').textContent = `#${trial.TrialNum} — ${trial.Congruency}`;
+      document.getElementById('detail-trial').textContent =
+        `Prime: ${trial.PrimeType} (${trial.Prime})\nTarget: ${trial.TargetType} (${trial.Target})`;
+
+      // Phase
+      const phaseLabel = PHASE_LABELS[phase] || phase;
+      document.getElementById('val-phase').innerHTML =
+        `<span class="phase-badge phase-${phase}">${phaseLabel}</span>`;
+
+      let phaseDetail = '';
+      if (phase === 'PRIME') phaseDetail = `${trial.PrimeType}: ${trial.Prime}`;
+      else if (phase === 'TARGET') phaseDetail = `${trial.TargetType}: ${trial.Target}`;
+      document.getElementById('detail-phase').textContent = phaseDetail;
+
+      // Action
+      updateAction(trial, phase);
+
+      // Next trial
+      updateNextTrial(nextTrial);
+    }
+
+    function updateAction(trial, phase) {
+      const card = document.getElementById('card-action');
+      const valEl = document.getElementById('val-action');
+      const detailEl = document.getElementById('detail-action');
+
+      const primeOlf = trial.PrimeType === 'Olfactory';
+      const targetOlf = trial.TargetType === 'Olfactory';
+
+      if (phase === 'PREPARING' && primeOlf) {
+        card.classList.add('alert');
+        valEl.textContent = `Ετοιμάστε: ${trial.Prime}`;
+        detailEl.textContent = 'Το prime είναι οσφρητικό';
+      } else if (phase === 'PRIME' && primeOlf) {
+        card.classList.add('alert');
+        valEl.textContent = `ΔΩΣΤΕ: ${trial.Prime}`;
+        detailEl.textContent = 'Δώστε το άρωμα ΤΩΡΑ';
+      } else if (phase === 'ISI' && targetOlf) {
+        card.classList.add('alert');
+        valEl.textContent = `Ετοιμάστε: ${trial.Target}`;
+        detailEl.textContent = 'Το target είναι οσφρητικό';
+      } else if (phase === 'TARGET' && targetOlf) {
+        card.classList.add('alert');
+        valEl.textContent = `ΔΩΣΤΕ: ${trial.Target}`;
+        detailEl.textContent = 'Δώστε το άρωμα ΤΩΡΑ';
+      } else {
+        card.classList.remove('alert');
+        valEl.textContent = 'Καμία ενέργεια';
+        detailEl.textContent = 'Αυτόματη φάση';
+      }
+    }
+
+    function updateNextTrial(nextTrial) {
+      const valEl = document.getElementById('val-next');
+      const detailEl = document.getElementById('detail-next');
+
+      if (!nextTrial) {
+        valEl.textContent = 'Τελευταίο trial';
+        detailEl.textContent = '';
+        return;
+      }
+
+      valEl.textContent = `${nextTrial.PrimeType} → ${nextTrial.TargetType}`;
+
+      let details = [`Prime: ${nextTrial.Prime}`, `Target: ${nextTrial.Target}`];
+      if (nextTrial.PrimeType === 'Olfactory')
+        details.push(`⚠ Ετοιμάστε prime: ${nextTrial.Prime}`);
+      if (nextTrial.TargetType === 'Olfactory')
+        details.push(`⚠ Ετοιμάστε target: ${nextTrial.Target}`);
+
+      detailEl.textContent = details.join('\n');
+    }
+
+    function handleComplete() {
+      document.getElementById('section-monitor').classList.remove('active');
+      document.getElementById('section-complete').classList.add('active');
+      document.getElementById('progress-fill').style.width = '100%';
+      document.getElementById('progress-text').textContent = 'Ολοκληρώθηκε';
+    }
+
+    function handleSessionReset() {
+      // Reset UI for new session
+      csvReady = false;
+      // audioReady stays true — no need to reload
+
+      document.getElementById('section-complete').classList.remove('active');
+      document.getElementById('section-monitor').classList.remove('active');
+      document.getElementById('section-setup').classList.remove('hidden');
+
+      // Hide audio picker if already loaded (no need to re-select)
+      if (audioReady) {
+        document.getElementById('label-audio').style.display = 'none';
+      }
+
+      // Reset CSV UI
+      dropZone.classList.remove('loaded');
+      dropZone.textContent = 'Σύρετε το CSV αρχείο εδώ ή κάντε κλικ';
+      const statusCsv = document.getElementById('status-csv');
+      statusCsv.textContent = '';
+      statusCsv.classList.remove('ready', 'error');
+
+      // Reset progress
+      document.getElementById('progress-fill').style.width = '0%';
+      document.getElementById('progress-text').textContent = '';
+
+      checkReady();
+    }
+  </script>
+</body>
+</html>
