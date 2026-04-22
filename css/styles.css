@@ -167,6 +167,14 @@ button:disabled {
 
 /* --- Response Sliders --- */
 
+.response-instruction {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #aaa;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
 .slider-container {
   display: flex;
   flex-direction: column;

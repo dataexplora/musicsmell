@@ -2,14 +2,23 @@
  * UI — Renders experiment phases on the participant screen.
  */
 const UI = {
-  /** Fixed order — same in UI and CSV export */
-  RESPONSE_WORDS: ['Λιακάδα', 'Αιχμή', 'Μάζα', 'Θαλπωρή', 'Αύρα', 'Νέκταρ'],
+  /** Fixed order — same in UI and CSV export. Greek neutral adjectives. */
+  DIMENSIONS: ['Φωτεινό', 'Οξύ', 'Πλήρες', 'Ζεστό', 'Γλυκό', 'Δροσερό'],
+
+  /** Target type instructions */
+  TARGET_INSTRUCTIONS: {
+    Auditory: 'Αξιολογήστε το ηχόχρωμα',
+    Olfactory: 'Αξιολογήστε το άρωμα'
+  },
 
   /** @type {HTMLElement} */
   _content: null,
 
   /** @type {Function|null} */
   _resolveResponse: null,
+
+  /** @type {string|null} Current trial's target type */
+  _currentTargetType: null,
 
   init() {
     this._content = document.getElementById('experiment-content');
@@ -26,6 +35,7 @@ const UI = {
         this._renderStimulus(trial.PrimeType, trial.Prime);
         break;
       case 'TARGET':
+        this._currentTargetType = trial.TargetType;
         this._renderStimulus(trial.TargetType, trial.Target);
         break;
       case 'RESPONSE':
@@ -69,7 +79,7 @@ const UI = {
   },
 
   /**
-   * Render 6 slider scales (fixed order) + confirm button.
+   * Render instruction + 6 slider scales (fixed order) + confirm button.
    */
   _renderResponse() {
     this._content.innerHTML = '';
@@ -77,16 +87,22 @@ const UI = {
     const container = document.createElement('div');
     container.className = 'slider-container';
 
+    // Instruction: what to rate
+    const instruction = document.createElement('div');
+    instruction.className = 'response-instruction';
+    instruction.textContent = this.TARGET_INSTRUCTIONS[this._currentTargetType] || '';
+    container.appendChild(instruction);
+
     const sliders = {};
 
     // Create one slider row per dimension
-    this.RESPONSE_WORDS.forEach(word => {
+    this.DIMENSIONS.forEach(dim => {
       const row = document.createElement('div');
       row.className = 'slider-row inactive';
 
       const label = document.createElement('span');
       label.className = 'slider-label';
-      label.textContent = word;
+      label.textContent = dim;
 
       const input = document.createElement('input');
       input.type = 'range';
@@ -101,7 +117,7 @@ const UI = {
         this._updateConfirmButton(sliders, confirmBtn);
       });
 
-      sliders[word] = input;
+      sliders[dim] = input;
       row.appendChild(label);
       row.appendChild(input);
       container.appendChild(row);
@@ -116,8 +132,8 @@ const UI = {
     confirmBtn.addEventListener('click', () => {
       if (this._resolveResponse) {
         const values = {};
-        this.RESPONSE_WORDS.forEach(word => {
-          values[word] = parseInt(sliders[word].value);
+        this.DIMENSIONS.forEach(dim => {
+          values[dim] = parseInt(sliders[dim].value);
         });
         const resolve = this._resolveResponse;
         this._resolveResponse = null;
@@ -129,12 +145,9 @@ const UI = {
     this._content.appendChild(container);
   },
 
-  /**
-   * Enable confirm button if at least one slider > 0.
-   */
   _updateConfirmButton(sliders, btn) {
-    const anyActive = this.RESPONSE_WORDS.some(
-      word => parseInt(sliders[word].value) > 0
+    const anyActive = this.DIMENSIONS.some(
+      dim => parseInt(sliders[dim].value) > 0
     );
     btn.disabled = !anyActive;
   },
