@@ -2,6 +2,7 @@
 # MusicSmell — Εκκίνηση πειράματος
 # Κλείστε αυτό το παράθυρο ή πατήστε Ctrl+C για να σταματήσετε.
 
+cd "$(dirname "$0")"
 PORT=8000
 echo ""
 echo "  MusicSmell"

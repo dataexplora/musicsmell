@@ -2,6 +2,7 @@
 REM MusicSmell — Εκκίνηση πειράματος
 REM Κλείστε αυτό το παράθυρο ή πατήστε Ctrl+C για να σταματήσετε.
 
+cd /d "%~dp0"
 set PORT=8000
 echo.
 echo   MusicSmell
