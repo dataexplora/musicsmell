@@ -111,6 +111,10 @@ const UI = {
       input.max = '100';
       input.value = '0';
 
+      const rangeLabels = document.createElement('div');
+      rangeLabels.className = 'slider-range-labels';
+      rangeLabels.innerHTML = '<span>Λίγο</span><span>Πολύ</span>';
+
       input.addEventListener('input', () => {
         const val = parseInt(input.value);
         row.classList.toggle('inactive', val === 0);
@@ -120,6 +124,7 @@ const UI = {
       sliders[dim] = input;
       row.appendChild(label);
       row.appendChild(input);
+      row.appendChild(rangeLabels);
       container.appendChild(row);
     });
 

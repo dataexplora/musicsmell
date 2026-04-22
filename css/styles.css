@@ -179,19 +179,19 @@ button:disabled {
 .slider-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2.5rem 4rem;
+  gap: 2rem 5rem;
   width: 100%;
-  max-width: 900px;
-  padding: 2rem 3rem;
+  max-width: 1000px;
+  padding: 1.5rem 3rem;
   align-items: start;
 }
 
 .slider-row {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  padding: 1.2rem 1.5rem;
-  border-radius: 10px;
+  gap: 0.6rem;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
   transition: all 0.2s;
 }
 
@@ -202,24 +202,42 @@ button:disabled {
 }
 
 .slider-row.inactive .slider-label {
-  color: #777;
+  color: #666;
 }
 
-/* Active: card lights up */
+.slider-row.inactive .slider-range-labels {
+  opacity: 0;
+}
+
+/* Active: card lights up strongly */
 .slider-row:not(.inactive) {
-  background: #1a1a1a;
-  border: 1px solid #666;
+  background: #222;
+  border: 1px solid #888;
 }
 
 .slider-row:not(.inactive) .slider-label {
   color: #fff;
+  font-weight: 500;
+}
+
+.slider-row:not(.inactive) .slider-range-labels {
+  opacity: 1;
 }
 
 .slider-label {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 400;
   text-align: center;
-  transition: color 0.2s;
+  transition: color 0.2s, font-weight 0.2s;
+}
+
+.slider-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #888;
+  transition: opacity 0.2s;
+  margin-top: -0.2rem;
 }
 
 .slider-input {
@@ -235,7 +253,7 @@ button:disabled {
 }
 
 .slider-row:not(.inactive) .slider-input {
-  background: #555;
+  background: #666;
 }
 
 .slider-input::-webkit-slider-thumb {
