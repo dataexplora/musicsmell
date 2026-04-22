@@ -27,8 +27,7 @@ const TrialEngine = {
     // --- PRIME ---
     callbacks.onPhaseChange('PRIME');
     this._currentAudio = this._playIfAuditory(trial.PrimeType, trial.Prime);
-    await this._wait(this.DURATIONS.PRIME);
-    this._stopAudio();
+    await this._waitForStimulusEnd(this.DURATIONS.PRIME);
 
     // --- ISI ---
     callbacks.onPhaseChange('ISI');
@@ -37,8 +36,7 @@ const TrialEngine = {
     // --- TARGET ---
     callbacks.onPhaseChange('TARGET');
     this._currentAudio = this._playIfAuditory(trial.TargetType, trial.Target);
-    await this._wait(this.DURATIONS.TARGET);
-    this._stopAudio();
+    await this._waitForStimulusEnd(this.DURATIONS.TARGET);
 
     // --- RESPONSE ---
     callbacks.onPhaseChange('RESPONSE');
@@ -65,6 +63,27 @@ const TrialEngine = {
       return AudioManager.play(value);
     }
     return null;
+  },
+
+  /**
+   * Wait for stimulus to finish: at least minDuration, but if audio
+   * is still playing let it finish before moving on.
+   */
+  async _waitForStimulusEnd(minDuration) {
+    const timerPromise = this._wait(minDuration);
+
+    if (this._currentAudio) {
+      const audio = this._currentAudio;
+      const audioPromise = new Promise(resolve => {
+        audio.addEventListener('ended', resolve, { once: true });
+        // Safety: if audio errors out, don't hang
+        audio.addEventListener('error', resolve, { once: true });
+      });
+      await Promise.all([timerPromise, audioPromise]);
+      this._currentAudio = null;
+    } else {
+      await timerPromise;
+    }
   },
 
   _stopAudio() {
