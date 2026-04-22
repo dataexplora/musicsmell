@@ -2,6 +2,7 @@
  * UI — Renders experiment phases on the participant screen.
  */
 const UI = {
+  /** Fixed order — same in UI and CSV export */
   RESPONSE_WORDS: ['Λιακάδα', 'Αιχμή', 'Μάζα', 'Θαλπωρή', 'Αύρα', 'Νέκταρ'],
 
   /** @type {HTMLElement} */
@@ -14,20 +15,11 @@ const UI = {
     this._content = document.getElementById('experiment-content');
   },
 
-  /**
-   * Switch visible screen.
-   * @param {string} screenId - e.g. 'screen-setup', 'screen-experiment', 'screen-end'
-   */
   showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(screenId).classList.add('active');
   },
 
-  /**
-   * Render the appropriate display for a trial phase.
-   * @param {string} phase - PRIME, ISI, TARGET, RESPONSE, PAUSE
-   * @param {Object} trial - Current trial data
-   */
   renderPhase(phase, trial) {
     switch (phase) {
       case 'PRIME':
@@ -46,9 +38,6 @@ const UI = {
     }
   },
 
-  /**
-   * Show "Ετοιμαστείτε..." before the first trial.
-   */
   renderPreparation() {
     this._content.innerHTML = '';
     const el = document.createElement('div');
@@ -57,12 +46,8 @@ const UI = {
     this._content.appendChild(el);
   },
 
-  /**
-   * Render a stimulus based on its type.
-   */
   _renderStimulus(type, value) {
     this._content.innerHTML = '';
-
     const el = document.createElement('div');
 
     if (type === 'Auditory') {
@@ -84,53 +69,81 @@ const UI = {
   },
 
   /**
-   * Render response buttons (6 words, shuffled).
+   * Render 6 slider scales (fixed order) + confirm button.
    */
   _renderResponse() {
     this._content.innerHTML = '';
 
     const container = document.createElement('div');
-    container.className = 'response-container';
+    container.className = 'slider-container';
 
-    const shuffled = this._shuffle([...this.RESPONSE_WORDS]);
+    const sliders = {};
 
-    shuffled.forEach(word => {
-      const btn = document.createElement('button');
-      btn.className = 'response-btn';
-      btn.textContent = word;
-      btn.addEventListener('click', () => {
-        if (this._resolveResponse) {
-          const resolve = this._resolveResponse;
-          this._resolveResponse = null;
-          resolve(word);
-        }
+    // Create one slider row per dimension
+    this.RESPONSE_WORDS.forEach(word => {
+      const row = document.createElement('div');
+      row.className = 'slider-row inactive';
+
+      const label = document.createElement('span');
+      label.className = 'slider-label';
+      label.textContent = word;
+
+      const input = document.createElement('input');
+      input.type = 'range';
+      input.className = 'slider-input';
+      input.min = '0';
+      input.max = '100';
+      input.value = '0';
+
+      input.addEventListener('input', () => {
+        const val = parseInt(input.value);
+        row.classList.toggle('inactive', val === 0);
+        this._updateConfirmButton(sliders, confirmBtn);
       });
-      container.appendChild(btn);
+
+      sliders[word] = input;
+      row.appendChild(label);
+      row.appendChild(input);
+      container.appendChild(row);
     });
 
+    // Confirm button
+    const confirmBtn = document.createElement('button');
+    confirmBtn.className = 'btn-confirm';
+    confirmBtn.textContent = 'Επιβεβαίωση';
+    confirmBtn.disabled = true;
+
+    confirmBtn.addEventListener('click', () => {
+      if (this._resolveResponse) {
+        const values = {};
+        this.RESPONSE_WORDS.forEach(word => {
+          values[word] = parseInt(sliders[word].value);
+        });
+        const resolve = this._resolveResponse;
+        this._resolveResponse = null;
+        resolve(values);
+      }
+    });
+
+    container.appendChild(confirmBtn);
     this._content.appendChild(container);
   },
 
   /**
-   * Set the resolver function for the current response.
-   * @param {Function} resolver
+   * Enable confirm button if at least one slider > 0.
    */
+  _updateConfirmButton(sliders, btn) {
+    const anyActive = this.RESPONSE_WORDS.some(
+      word => parseInt(sliders[word].value) > 0
+    );
+    btn.disabled = !anyActive;
+  },
+
   setResponseResolver(resolver) {
     this._resolveResponse = resolver;
   },
 
   showEnd() {
     this.showScreen('screen-end');
-  },
-
-  /**
-   * Fisher-Yates shuffle.
-   */
-  _shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
   }
 };

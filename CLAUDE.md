@@ -46,14 +46,19 @@ musicsmell/
 - **6 lexical primes** (Greek): Λιακάδα, Αιχμή, Μάζα, Θαλπωρή, Αύρα, Νέκταρ
 - **Controls**: Pink noise (auditory), Distilled water (olfactory)
 
-### 6 Response Words (semantic dimensions)
-Displayed in **random order** (Fisher-Yates shuffle) each trial. Participant selects **one**.
+### 6 Response Dimensions (slider scales)
+Displayed in **fixed order** every trial. Participant rates each on a slider (0–100).
 1. Λιακάδα (Brightness)
 2. Αιχμή (Sharpness)
 3. Μάζα (Fullness)
 4. Θαλπωρή (Warmth)
 5. Αύρα (Freshness)
 6. Νέκταρ (Sweetness)
+
+- Default: all at 0 (deactivated/dimmed)
+- Slider > 0: property activates visually
+- Must activate at least 1 before confirming
+- Numeric values NOT shown to participant
 
 ### Trial Flow
 ```
@@ -86,7 +91,8 @@ Displayed in **random order** (Fisher-Yates shuffle) each trial. Participant sel
 
 ### Output
 - Auto-download CSV on session end
-- Columns: `ParticipantID,Session,TrialNum,TargetType,Target,PrimeType,Prime,Congruency,Response,ResponseTimeMs`
+- Columns: `ParticipantID,Session,TrialNum,TargetType,Target,PrimeType,Prime,Congruency,Λιακάδα,Αιχμή,Μάζα,Θαλπωρή,Αύρα,Νέκταρ,ResponseTimeMs`
+- Each dimension: integer 0–100 (0 = not selected)
 - Filename: `results_P{id}_S{session}.csv`
 - localStorage backup after each trial (crash recovery)
 

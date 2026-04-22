@@ -142,7 +142,7 @@ const App = {
 
       this.results.push({
         ...trial,
-        Response: result.response,
+        ...result.response,
         ResponseTimeMs: result.responseTimeMs
       });
 

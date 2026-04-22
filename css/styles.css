@@ -157,46 +157,104 @@ button:disabled {
 }
 
 .lexical-prime {
-  font-size: 4.5rem;
-  font-weight: 400;
+  font-family: Arial, sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
   color: #fff;
   text-align: center;
+  text-transform: uppercase;
 }
 
-/* --- Response Buttons --- */
+/* --- Response Sliders --- */
 
-.response-container {
+.slider-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  max-width: 900px;
+  flex-direction: column;
+  gap: 1.8rem;
+  width: 100%;
+  max-width: 600px;
   padding: 2rem;
 }
 
-.response-btn {
-  padding: 1.2rem 2.5rem;
-  font-size: 1.5rem;
-  font-weight: 300;
-  background: #1a1a2e;
-  border: 2px solid #444;
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: opacity 0.2s;
+}
+
+.slider-row.inactive {
+  opacity: 0.35;
+}
+
+.slider-label {
+  font-size: 1.2rem;
+  font-weight: 400;
+  min-width: 120px;
+  text-align: right;
   color: #fff;
-  border-radius: 12px;
+}
+
+.slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  outline: none;
   cursor: pointer;
-  transition: all 0.15s;
-  min-width: 160px;
-  font-family: inherit;
 }
 
-.response-btn:hover {
-  background: #2a2a4e;
-  border-color: #1565c0;
-  transform: scale(1.05);
+.slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #888;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s;
 }
 
-.response-btn:active {
-  transform: scale(0.98);
+.slider-input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #888;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider-row:not(.inactive) .slider-input::-webkit-slider-thumb {
   background: #1565c0;
+}
+
+.slider-row:not(.inactive) .slider-input::-moz-range-thumb {
+  background: #1565c0;
+}
+
+.btn-confirm {
+  margin-top: 1rem;
+  padding: 0.9rem 2.5rem;
+  font-size: 1.1rem;
+  background: #1565c0;
+  border: 1px solid #1565c0;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  align-self: center;
+  transition: background 0.2s;
+}
+
+.btn-confirm:hover:not(:disabled) {
+  background: #1976d2;
+}
+
+.btn-confirm:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 /* --- End Screen --- */
