@@ -340,6 +340,7 @@
     // New session button
     document.getElementById('btn-new-session').addEventListener('click', () => {
       participantWindow.postMessage({ type: 'new-session' }, '*');
+      handleSessionReset();
     });
 
     // --- Check readiness ---
