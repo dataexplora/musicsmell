@@ -189,20 +189,28 @@ button:disabled {
 .slider-row {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.8rem;
+  padding: 1.2rem 1.5rem;
+  border-radius: 10px;
   transition: all 0.2s;
 }
 
-/* Inactive: visible but dimmed */
+/* Inactive: card visible, dimmed — "closed control" */
+.slider-row.inactive {
+  background: #111;
+  border: 1px solid #333;
+}
+
 .slider-row.inactive .slider-label {
-  color: #555;
+  color: #777;
 }
 
-.slider-row.inactive .slider-input {
-  opacity: 0.5;
+/* Active: card lights up */
+.slider-row:not(.inactive) {
+  background: #1a1a1a;
+  border: 1px solid #666;
 }
 
-/* Active: bright, clear */
 .slider-row:not(.inactive) .slider-label {
   color: #fff;
 }
@@ -227,35 +235,35 @@ button:disabled {
 }
 
 .slider-row:not(.inactive) .slider-input {
-  background: #666;
+  background: #555;
 }
 
 .slider-input::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 24px;
-  height: 24px;
-  background: #666;
+  width: 22px;
+  height: 22px;
+  background: #555;
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.15s;
 }
 
 .slider-input::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
-  background: #666;
+  width: 22px;
+  height: 22px;
+  background: #555;
   border: none;
   border-radius: 50%;
   cursor: pointer;
 }
 
 .slider-row:not(.inactive) .slider-input::-webkit-slider-thumb {
-  background: #ccc;
+  background: #bbb;
 }
 
 .slider-row:not(.inactive) .slider-input::-moz-range-thumb {
-  background: #ccc;
+  background: #bbb;
 }
 
 .btn-confirm {
