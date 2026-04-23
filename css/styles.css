@@ -160,7 +160,7 @@ button:disabled {
   font-family: Arial, sans-serif;
   font-size: 7rem;
   font-weight: 700;
-  color: #fff;
+  color: #adadad;
   text-align: center;
   text-transform: uppercase;
   animation: lexical-fade-in 1s ease-in forwards;
