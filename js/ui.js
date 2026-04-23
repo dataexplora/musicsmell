@@ -3,7 +3,7 @@
  */
 const UI = {
   /** Fixed order — same in UI and CSV export. Greek neutral adjectives. */
-  DIMENSIONS: ['Φωτεινό', 'Οξύ', 'Πλήρες', 'Ζεστό', 'Γλυκό', 'Δροσερό'],
+  DIMENSIONS: ['Φωτεινό', 'Οξύ', 'Γεμάτο', 'Ζεστό', 'Γλυκό', 'Φρέσκο'],
 
   /** Target type instructions */
   TARGET_INSTRUCTIONS: {
