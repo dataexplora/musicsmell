@@ -156,6 +156,15 @@ button:disabled {
   text-align: center;
 }
 
+.stimulus-icon {
+  max-width: 240px;
+  max-height: 240px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
 .lexical-prime {
   font-family: Arial, sans-serif;
   font-size: 7rem;

@@ -58,20 +58,25 @@ const UI = {
 
   _renderStimulus(type, value) {
     this._content.innerHTML = '';
-    const el = document.createElement('div');
 
     if (type === 'Auditory') {
-      el.className = 'stimulus-instruction';
-      el.textContent = 'Ακούστε τον ήχο';
+      const img = document.createElement('img');
+      img.className = 'stimulus-icon';
+      img.src = 'public/ear_transparent_white.png';
+      img.alt = '';
+      this._content.appendChild(img);
     } else if (type === 'Olfactory') {
-      el.className = 'stimulus-instruction';
-      el.textContent = 'Μυρίστε';
+      const img = document.createElement('img');
+      img.className = 'stimulus-icon';
+      img.src = 'public/nose_transparent_white.png';
+      img.alt = '';
+      this._content.appendChild(img);
     } else if (type === 'Lexical') {
+      const el = document.createElement('div');
       el.className = 'lexical-prime';
       el.textContent = value;
+      this._content.appendChild(el);
     }
-
-    this._content.appendChild(el);
   },
 
   _renderBlank() {
