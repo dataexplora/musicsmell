@@ -200,6 +200,24 @@
       margin-bottom: 1rem;
     }
 
+    /* --- Block Change Pause --- */
+    .block-change-section {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .block-change-section.active { display: block; }
+
+    .block-change-section h2 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: #ff9800;
+      margin-bottom: 1rem;
+    }
+
     .hidden { display: none !important; }
   </style>
 </head>
@@ -261,6 +279,14 @@
           <div class="detail" id="detail-next">—</div>
         </div>
       </div>
+    </div>
+
+    <!-- BLOCK CHANGE PAUSE -->
+    <div class="block-change-section" id="section-block-change">
+      <h2>Αλλαγή ομάδας ερεθισμάτων</h2>
+      <p id="block-change-info" style="color: #ffb74d; margin-bottom: 1rem; font-size: 1.1rem;"></p>
+      <p style="color: #aaa; margin-bottom: 2rem;">Ετοιμάστε τα μπουκαλάκια για την επόμενη ομάδα και πατήστε «Συνέχεια» όταν είστε έτοιμοι.</p>
+      <button class="btn btn-primary" id="btn-continue">Συνέχεια</button>
     </div>
 
     <!-- COMPLETE -->
@@ -343,6 +369,13 @@
       handleSessionReset();
     });
 
+    // Continue button (after block change)
+    document.getElementById('btn-continue').addEventListener('click', () => {
+      participantWindow.postMessage({ type: 'continue' }, '*');
+      document.getElementById('section-block-change').classList.remove('active');
+      document.getElementById('section-monitor').classList.add('active');
+    });
+
     // --- Check readiness ---
 
     function checkReady() {
@@ -394,6 +427,10 @@
           handleTrialUpdate(data);
           break;
 
+        case 'block-change':
+          handleBlockChange(data);
+          break;
+
         case 'complete':
           handleComplete();
           break;
@@ -403,6 +440,20 @@
           break;
       }
     });
+
+    function handleBlockChange({ trial, nextTrial, trialIndex, totalTrials }) {
+      // Hide monitor, show block change pause
+      document.getElementById('section-monitor').classList.remove('active');
+      document.getElementById('section-block-change').classList.add('active');
+
+      const targetTypeLabel = trial.TargetType === 'Olfactory' ? 'οσφρητικά (αρώματα)' : 'ακουστικά (ήχοι)';
+      const primeTypeLabel = trial.PrimeType === 'Olfactory' ? 'οσφρητικά (αρώματα)'
+        : trial.PrimeType === 'Auditory' ? 'ακουστικά (ήχοι)'
+        : 'λεκτικά (λέξεις)';
+
+      document.getElementById('block-change-info').textContent =
+        `Επόμενη ομάδα: Targets = ${targetTypeLabel}, Primes = ${primeTypeLabel}`;
+    }
 
     function handleTrialUpdate({ trial, nextTrial, trialIndex, totalTrials, phase }) {
       // Progress

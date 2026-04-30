@@ -13,6 +13,9 @@ const App = {
   /** @type {Window|null} */
   researcherWindow: null,
 
+  /** @type {Function|null} Resolver waiting for researcher to continue after a block change */
+  _continueResolver: null,
+
   init() {
     UI.init();
 
@@ -59,6 +62,14 @@ const App = {
 
       case 'new-session':
         this._resetForNewSession();
+        break;
+
+      case 'continue':
+        if (this._continueResolver) {
+          const r = this._continueResolver;
+          this._continueResolver = null;
+          r();
+        }
         break;
     }
   },
@@ -122,6 +133,24 @@ const App = {
       this.currentTrialIndex = i;
       const trial = this.trials[i];
       const nextTrial = this.trials[i + 1] || null;
+      const prevTrial = i > 0 ? this.trials[i - 1] : null;
+
+      // Block change pause: when target type changes between trials,
+      // the researcher needs time to rearrange aroma bottles.
+      if (prevTrial && prevTrial.TargetType !== trial.TargetType) {
+        UI.showScreen('screen-waiting');
+        this._notifyResearcher({
+          type: 'block-change',
+          trial,
+          nextTrial,
+          trialIndex: i,
+          totalTrials: this.trials.length
+        });
+        await new Promise(resolve => {
+          this._continueResolver = resolve;
+        });
+        UI.showScreen('screen-experiment');
+      }
 
       const result = await TrialEngine.runTrial(trial, {
         onPhaseChange: (phase) => {

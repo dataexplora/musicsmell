@@ -6,9 +6,9 @@
 const TrialEngine = {
   /** Durations in milliseconds (hardcoded for now) */
   DURATIONS: {
-    PRIME: 3000,
+    PRIME: 7000,
     ISI: 1000,
-    TARGET: 3000,
+    TARGET: 7000,
     PAUSE: 1000
   },
 

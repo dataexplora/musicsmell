@@ -60,19 +60,22 @@ Instruction shown above sliders based on target type:
 - Auditory target → "Αξιολογήστε το ηχόχρωμα"
 - Olfactory target → "Αξιολογήστε το άρωμα"
 
-- Default: all at 0 (deactivated/dimmed)
-- Slider > 0: property activates visually
-- Must activate at least 1 before confirming
+- Default: all at **50** (center, deactivated/dimmed)
+- Slider ≠ 50: property activates visually (moved away from neutral)
+- Range labels: "Καθόλου" (left, 0) — "Πολύ" (right, 100)
+- Must activate at least 1 (move away from 50) before confirming
 - Numeric values NOT shown to participant
+- Returning slider to 50 deactivates it again
+- CSV exports raw 0–100 value (researcher subtracts 50 for bipolar analysis)
 
 ### Trial Flow
 ```
-[Prime: 3s] → [ISI: 1s blank] → [Target: 3s] → [Response: no time limit] → [Pause: 1s] → next
+[Prime: 7s] → [ISI: 1s blank] → [Target: 7s] → [Response: no time limit] → [Pause: 1s] → next
 ```
 
-- Prime and target always **equal duration** (3s)
+- Prime and target always **equal duration** (7s minimum; audio plays to natural end if longer)
 - Response is always about the **target** only
-- Timing hardcoded (may change after researcher feedback)
+- When TargetType changes between trials → block change pause (researcher must press Continue)
 
 ### Stimulus Presentation
 | Type | Participant sees | Audio |

@@ -114,15 +114,15 @@ const UI = {
       input.className = 'slider-input';
       input.min = '0';
       input.max = '100';
-      input.value = '0';
+      input.value = '50';
 
       const rangeLabels = document.createElement('div');
       rangeLabels.className = 'slider-range-labels';
-      rangeLabels.innerHTML = '<span>Λίγο</span><span>Πολύ</span>';
+      rangeLabels.innerHTML = '<span>Καθόλου</span><span>Πολύ</span>';
 
       input.addEventListener('input', () => {
         const val = parseInt(input.value);
-        row.classList.toggle('inactive', val === 0);
+        row.classList.toggle('inactive', val === 50);
         this._updateConfirmButton(sliders, confirmBtn);
       });
 
@@ -157,7 +157,7 @@ const UI = {
 
   _updateConfirmButton(sliders, btn) {
     const anyActive = this.DIMENSIONS.some(
-      dim => parseInt(sliders[dim].value) > 0
+      dim => parseInt(sliders[dim].value) !== 50
     );
     btn.disabled = !anyActive;
   },
