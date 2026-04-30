@@ -5,7 +5,7 @@ const Export = {
   COLUMNS: [
     'ParticipantID', 'Session', 'TrialNum', 'TargetType', 'Target',
     'PrimeType', 'Prime', 'Congruency',
-    'Φωτεινό', 'Οξύ', 'Πλήρες', 'Ζεστό', 'Γλυκό', 'Δροσερό',
+    'Φωτεινό', 'Οξύ', 'Γεμάτο', 'Ζεστό', 'Γλυκό', 'Φρέσκο',
     'ResponseTimeMs'
   ],
 
